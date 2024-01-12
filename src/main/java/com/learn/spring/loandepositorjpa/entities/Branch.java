@@ -26,6 +26,9 @@ public class Branch {
             strategy = GenerationType.AUTO,
             generator = "branch_sequence"
     )
+    @Column(
+            name = "branch_id"
+    )
     private Long branchId;
 
     @Column(
@@ -59,8 +62,17 @@ public class Branch {
     private String state;
 
     @OneToMany(
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            mappedBy = "branch",
+            fetch = FetchType.EAGER
     )
-    private List<Loan> loan = new ArrayList<>();
+    private List<Loan> loans = new ArrayList<>();
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "branch",
+            fetch = FetchType.EAGER
+    )
+    private List<Account> accounts = new ArrayList<>();
 
 }

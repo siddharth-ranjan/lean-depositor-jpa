@@ -1,10 +1,7 @@
 package com.learn.spring.loandepositorjpa.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -49,10 +46,21 @@ public class Account {
     private AccountType accountType;
 
     @ManyToOne(
-            cascade = CascadeType.ALL
+//            cascade = CascadeType.ALL
     )
     @JoinColumn(
             name = "branch_id"
     )
     private Branch branch;
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountNumber=" + accountNumber +
+                ", balance=" + balance +
+                ", creationDate=" + creationDate +
+                ", accountType=" + accountType +
+                ", branch=" + branch.getBranchId() +
+                '}';
+    }
 }

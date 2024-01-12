@@ -32,10 +32,19 @@ public class Loan {
     private Long amount;
 
     @ManyToOne(
-            cascade = CascadeType.ALL
+//            cascade = CascadeType.ALL
     )
     @JoinColumn(
             name = "branch_id"
     )
     private Branch branch;
+
+    @Override
+    public String toString() {
+        return "Loan{" +
+                "loan_no=" + loan_no +
+                ", amount=" + amount +
+                ", branch=" + branch.getBranchId() +
+                '}';
+    }
 }
